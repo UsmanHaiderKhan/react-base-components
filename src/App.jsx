@@ -9,6 +9,18 @@ function App() {
   function handleTabButtons(selectedButton){
     setSelectedTopic(selectedButton);
     console.log(selectedTopic);
+    }
+    let tabContent = <p>Please select a Topic</p>;
+  if(selectedTopic){
+    tabContent = (
+      <div id="tab-content">
+        <h3>{Topics[selectedTopic].title}</h3>
+        <p>{Topics[selectedTopic].description}</p>
+        <pre>
+          <code>{Topics[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
   }
   return (
     <div>
@@ -42,14 +54,7 @@ function App() {
             <TabButton onSelect={() => handleTabButtons('props')}>Props</TabButton>
             <TabButton onSelect={() => handleTabButtons('state')}>States</TabButton>
            </menu>
-          
-           {!selectedTopic ? <p>Please select a Topic</p> : <div id="tab-content">  <h3>{Topics[selectedTopic].title}</h3>
-            <p>{Topics[selectedTopic].description}</p>
-            <pre>
-              <code>{Topics[selectedTopic].code}</code>
-            </pre>
-           </div>} 
-           
+          {tabContent}
        </section>
       </main>
     </div>

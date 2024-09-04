@@ -29,14 +29,18 @@ function App() {
        <section id="core-concepts">
         <h2>Service Items</h2>
         <ul>
+         {/* Generate List by using map */}
+          {CORE_CONCEPTS.map((conceptItem)=>(
+          <ServiceItems key={conceptItem.title}  {...conceptItem} />
+          ))}
+
 
         {/* Another way of doing dynamically  */}
-        <ServiceItems title={CORE_CONCEPTS[0].title} image={CORE_CONCEPTS[0].image} description={CORE_CONCEPTS[0].description}></ServiceItems>
+        {/* <ServiceItems title={CORE_CONCEPTS[0].title} image={CORE_CONCEPTS[0].image} description={CORE_CONCEPTS[0].description}></ServiceItems> */}
               
         {/* This is very short and handy */}
-         <ServiceItems {...CORE_CONCEPTS[1]}></ServiceItems>
-         <ServiceItems {...CORE_CONCEPTS[2]}></ServiceItems>
-         <ServiceItems {...CORE_CONCEPTS[3]}></ServiceItems>
+      {/* //   <ServiceItems {...CORE_CONCEPTS[1]}></ServiceItems> */}
+        
           {/* One way of using props
            <ServiceItems
             image={serviceItemImg}
@@ -49,10 +53,11 @@ function App() {
        <section id="examples">
         <h2>Examples</h2>
            <menu>
-            <TabButton onSelect={() => handleTabButtons('components')}>Component</TabButton>
-            <TabButton onSelect={() => handleTabButtons('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleTabButtons('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleTabButtons('state')}>States</TabButton>
+            <TabButton isSelected={selectedTopic === 'components'}
+              onSelect={() => handleTabButtons('components')}>Component</TabButton>
+            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleTabButtons('jsx')}>JSX</TabButton>
+            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleTabButtons('props')}>Props</TabButton>
+            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleTabButtons('state')}>States</TabButton>
            </menu>
           {tabContent}
        </section>
